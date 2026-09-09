@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial;
+            margin: 0;
+            background: linear-gradient(to bottom,
+                #1a2238,
+                #3c4a73,
+                #6b7b8c,
+                #f5f1e6
+            );
+            color: #fff;
+        }
+        header {
+            background: #1a2238;
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            color: #fff;
+        }
+        .container {
+            padding: 20px;
+        }
+        h2 {
+            color: #f5f1e6;
+        }
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .charts img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+        .summary {
+            margin-top: 30px;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        table {
+            background: #f5f1e6;
+            color: #1a2238;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid #3c4a73;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>📊 Student Dashboard</header>
+    <div class="container">
+        <h2>Class Summary</h2>
+        <div class="summary">
+            <p><strong>Average Marks:</strong> {{ summary["Average Marks"] }}</p>
+            <p><strong>Top Student:</strong> {{ summary["Top Student"] }}</p>
+            <p><strong>Grade Distribution:</strong> {{ summary["Grade Distribution"] }}</p>
+        </div>
+
+        <h2>Student Data</h2>
+        {{ result|safe }}
+
+        <div class="charts">
+            <div>
+                <h2>Marks Distribution</h2>
+                <img src="{{ plot_marks }}" alt="Marks Chart">
+            </div>
+            <div>
+                <h2>Attendance vs Marks</h2>
+                <img src="{{ plot_attendance }}" alt="Attendance Chart">
+            </div>
+            <div>
+                <h2>Grade Distribution</h2>
+                <img src="{{ plot_grades }}" alt="Grade Chart">
+            </div>
+            <div>
+                <h2>Average Marks per Subject</h2>
+                <img src="{{ plot_subject_avg }}" alt="Subject Average Chart">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
